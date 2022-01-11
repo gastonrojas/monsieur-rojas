@@ -1,0 +1,11 @@
+
+
+.card{
+    border: solid black 1px;
+    max-width: 20vw;
+    margin: 5px;
+
+}
+.card img {
+    width: 100%;
+}

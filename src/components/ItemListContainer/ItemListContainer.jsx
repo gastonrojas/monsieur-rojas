@@ -1,14 +1,23 @@
-import ItemList from '../ItemList/ItemList'
+import ItemList from './ItemList/ItemList';
+import './ItemListContainer.css';
 
-function ItemListContainer({greetings}) {
-    
+import useProducts from '../../hooks/useProducts';
 
-    return (
-        <div>
-            <h2>{greetings}</h2>
-            < ItemList />
-        </div>
-    )
+function ItemListContainer({ greetings = '' }) {
+  const { loading, productos } = useProducts();
+
+  return (
+    <div className="itemsContainer">
+      <h2>{greetings}</h2>
+      <div className="cards" >
+        {loading ? (
+          <h3>Cargando...</h3>
+        ) : (
+          <ItemList prods={productos} />
+        )}
+      </div>
+    </div>
+  );
 }
 
-export default ItemListContainer
+export default ItemListContainer;

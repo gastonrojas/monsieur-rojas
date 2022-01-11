@@ -1,4 +1,3 @@
-import React from 'react'
 import logo from '../../assets/logo.svg';
 import CartWidget from '../CartWidget/CartWidget';
 import '../NavBar/NavBar.css'
