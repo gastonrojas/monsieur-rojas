@@ -2,8 +2,9 @@
 
 .card{
     border: solid black 1px;
+
     max-width: 20vw;
-    margin: 5px;
+    margin: 20px;
 
 }
 .card img {
