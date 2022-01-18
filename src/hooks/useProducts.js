@@ -9,14 +9,12 @@ const useProducts = () => {
 
   const { idCategoria, idDetalle } = useParams();
 
-  // console.log(idCategoria);
 
   useEffect(() => {
     if (idCategoria) {
       getFetch
         .then((data) => {
           const productsFilter = data.filter((prod) => prod.categoria === idCategoria) ?? []
-          console.log('productsFilter', productsFilter)
           setProductos(productsFilter);
           setLoading(false);
           return
