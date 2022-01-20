@@ -2,14 +2,18 @@ import "../../ItemListContainer/Item/Item.css"
 import ItemCount from "./ItemCount";
 import {useState} from 'react'
 import {Link} from 'react-router-dom'
+import { useCartContext } from "../../../context/cartContext";
 
 
 function ItemDetail({product={}}) {
 
+    const {agregarAlCarrito } = useCartContext()
+
     const [show, setshow] = useState(true)
 
-    const onAdd = () => {
+    const onAdd = (count) => {
         setshow(false)
+        agregarAlCarrito({...product, cantidad: count})
     }
 
     return (
@@ -21,7 +25,6 @@ function ItemDetail({product={}}) {
                                 <h4 className="card-title>">{product.name}</h4>
                                 <p className="card-text">{product.desc}</p>
                                 <p className="card-text">${product.price}</p>
-                                {/* <button id={product.id} className="btn btn-primary">Agregar al carrito</button> */}
                                 { show ? <ItemCount stock={product.stock} onAdd={onAdd} />
                                  : 
                                  <div>
