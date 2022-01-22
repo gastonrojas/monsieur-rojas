@@ -43,3 +43,11 @@ li a {
   text-decoration: none;
   color: white;
 }
+
+.coutnNotVisible{
+  visibility: hidden;
+}
+
+.countVisible{
+  visibility: visible;
+}

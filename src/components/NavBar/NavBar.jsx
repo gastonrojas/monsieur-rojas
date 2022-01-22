@@ -2,8 +2,11 @@ import logo from '../../assets/logo.svg';
 import CartWidget from '../CartWidget/CartWidget';
 import '../NavBar/NavBar.css'
 import { Link } from 'react-router-dom';
+import { useCartContext } from '../../context/cartContext';
 
 function NavBar() {
+  const { totalItems } = useCartContext();
+
   return (
     <div>
       <header className="header">
@@ -24,6 +27,13 @@ function NavBar() {
         <Link to="/cart">
           <CartWidget />
         </Link>
+        <h3
+          className={`${
+            totalItems() === 0 ? 'coutnNotVisible' : 'countVisible'
+          }`}
+        >
+          {totalItems()}
+        </h3>
       </header>
     </div>
   );
