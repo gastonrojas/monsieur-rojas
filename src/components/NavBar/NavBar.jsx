@@ -16,24 +16,26 @@ function NavBar() {
         </Link>
         <ul>
           <li>
-            <Link to="/categoria/natural">Productos naturales</Link>
+            <Link to="/categoria/Natural">Productos naturales</Link>
           </li>
           <li>
-            <Link to="/categoria/organico">Productos organicos</Link>
+            <Link to="/categoria/Organico">Productos organicos</Link>
           </li>
         </ul>
         <button>Sign in</button>
         <button>Sing up</button>
-        <Link to="/cart">
-          <CartWidget />
-        </Link>
-        <h3
-          className={`${
-            totalItems() === 0 ? 'coutnNotVisible' : 'countVisible'
-          }`}
-        >
-          {totalItems()}
-        </h3>
+        <div className="cartContainer">
+          <Link to="/cart">
+            <CartWidget />
+          </Link>
+          <h3
+            className={`${
+              totalItems() === 0 ? 'coutnNotVisible' : 'countVisible'
+            }`}
+          >
+            {totalItems()}
+          </h3>
+        </div>
       </header>
     </div>
   );

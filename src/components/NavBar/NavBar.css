@@ -30,8 +30,8 @@
   }
 
   .cart {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(262deg) brightness(100%) contrast(101%);
 }
 
@@ -43,11 +43,27 @@ li a {
   text-decoration: none;
   color: white;
 }
-
+.cartContainer{
+  position: relative;
+}
 .coutnNotVisible{
-  visibility: hidden;
+  display: none;
+  position: absolute;
 }
 
 .countVisible{
-  visibility: visible;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.7em;
+  height: 1.7em;
+  font-size: 0.8em;
+  color: #282c34;
+  background-color: rgb(241, 22, 241);
+  border-radius: 50%;
+  border: none;
+  text-decoration: none;
+  position: absolute;
+  top: -20px;
+  left: -8px;
 }
