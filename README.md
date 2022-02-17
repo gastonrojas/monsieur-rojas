@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# Monsieur Gaston
+## _Proyecto React.js Coderhouse_
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Monsieur Gaston es un proyecto de ecommerce realizado con React.js durante la cursada de coderhouse, utilizando  [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Codigo 
+Para  iniciar create-react app es requerido instalar previamente Node.
 
-In the project directory, you can run:
+### `npx`
+```sh
+npx create-react-app my-app
+```
+Con este metodo cree mi app.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### `npm-start`
+Corre mi aplicacion en modo desarrollo. 
+Abre http://localhost:3000 para verla en el navegador.
+Aqui puedo ver los cambios realizados asi como una leyenda en caso de error.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### `react-router-dom`
+Permite el enrutado de mi aplicacion, envolviendo mis componentes a enrutar cde la siguiente manera:
+```sh
+<BrowserRouter>
+    <NavBar />
+    <Routes>
+        <Route exact path="/" element= root>
+        <Route exact path="/1/:query" element= 1....>
+        <Route exact path="/2" element=2....>
+        ...
+    </Routes>
+</BrowserRouter>
+```
+Se coloca en este caso NavBar por fuera de routes ya que este componente debera ser visible en todo momento.
+Luego con Routes envolvemos cada Route que definira un camino iniciando con el parametro "/" que sera la raiz y definiendo el componenete a renderizar en element={<Componente 1 />}.
+En el path podemos colocar '/1/:query' para poder ir haciendo un enrutado dinamico, para poder renderizar listas segun categoria por ejemplo.
 
-### `npm test`
+### `Context provider`
+ Se creo un contexto CartContext:
+ 
+ ```sh
+const cartContext = createContext([]);
+ ```
+Y para utilizar el context se exporta el mismo:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh 
+export function useCartContext() {
+  return useContext(cartContext);
+}
+```
+Dentro de cartContext.jxs creamos un context provider con el cual envolvemos todos los componentes que deban estar bajo la orbita del contexto. En esta aplicacion el contexto envuelve todos los componenetes, quedando en orden superior a BrowserRouter.
 
-### `npm run build`
+### `Firebase`
+Utilizamos el servicio de firebase y sus metodos para poder proveer a la aplicacion desde un servidor de la base de datos necesaria para su funcionamiento.
+Con el metodo getDocs() se provee de forma asincrona un listado de elementos que luego son mapeados segun su categoria o en su totalidad en el componente <ItemListContainer>.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Con el metodo getDoc() se provee un unico elemento en <ItemDetailContainer>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Ambos metodos estar provistos en el archivo useProducts.js en la carpeta hooks.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Con el metodo addDoc() creamos un elemento en firebase para guardar la orden realizada por el usuario y se devuelve un id para el mismo. 
+Este metodo se encuentra en cartContext.jsx.
 
-### `npm run eject`
+### `react-spinners`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```sh
+npm install --save react-spinners
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Para utlizar react-spinners se utiliiza [emotion](https://github.com/emotion-js/emotion) para lo que es requerido agregar un plugin .babelrc por ejemplo:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```sh
+{
+    "presets": ["@babel/preset-react", "@babel/preset-env"],
+    "plugins": ["@emotion"]
+}
+```
+Se creara un renderizado condicional en las llamadas api donde se muestra el spinner seleccionado de react-spinners.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### `Estilo`
+Por el momento se esta utlizando css plano para todos los estilos de la aplicacion.

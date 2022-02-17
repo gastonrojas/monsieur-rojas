@@ -1,7 +1,7 @@
 import Item from '../Item/Item';
 
-function ItemList({ prods=[] }) {
-  return prods.map((prod) => <Item key={prod.id} prod={prod} />);
+function ItemList({ products}) {
+  return products.map((product) => <Item key={product.id} prod={product} />);
 }
 
 export default ItemList;

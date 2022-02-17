@@ -7,19 +7,20 @@ import { useCartContext } from "../../../context/cartContext";
 
 function ItemDetail({product={}}) {
 
-    const {agregarAlCarrito } = useCartContext()
+    const { addToCart } = useCartContext()
 
     const [show, setshow] = useState(true)
 
     const onAdd = (count) => {
         setshow(false)
-        agregarAlCarrito({...product, cantidad: count})
+        addToCart({...product, cantidad: count})
     }
 
     return (
-      <div>
+      <div className="detail-container">
+
         <article className="card">
-          <img src={product.imgUrl} className="card-img-top" alt="img" />
+          <img src={product.imgUrl} alt="img" />
           <div className="card-body">
             <h4 className="card-title>">{product.title}</h4>
             <p className="card-text">{product.description}</p>
@@ -29,10 +30,18 @@ function ItemDetail({product={}}) {
             ) : (
               <div>
                 <Link to="/cart">
-                  <button>Ir al carrito</button>
+                  <button>
+              <span className="shadow"></span>
+              <span className="edge"></span>
+              <span className="front text">Ir al carrito</span>
+                  </button>
                 </Link>
                 <Link to="/">
-                  <button>Seguir comprando</button>
+                <button>
+              <span className="shadow"></span>
+              <span className="edge"></span>
+              <span className="front text">Seguir comprando</span>
+                  </button>
                 </Link>
               </div>
             )}

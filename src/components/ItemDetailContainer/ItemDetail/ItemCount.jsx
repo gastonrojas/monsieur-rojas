@@ -1,5 +1,5 @@
 import {useState} from 'react'
-
+import "../../ItemListContainer/Item/Item.css"
  
 
 
@@ -17,17 +17,27 @@ const ItemCount = ({stock, onAdd}) => {
         if(count > 1) setCount(count - 1)
     }   
 
-    // const handlerOnAdd=()=>{
-    //     onAdd(count)
-    //     // setCount(initial)
-    // }
 
     return (
-        <div className="w-50">
-            <button className="btn btn-primary" onClick={handlerAdd}>+</button>
-            <label>{count}</label>
-            <button className="btn btn-primary" onClick={handlerRemove}>-</button><br />
-            <button className="btn btn-outline-primary btn-block" onClick={() => onAdd(count)}>Agregar</button>
+        <div>
+            <p>{count}</p>
+            <button onClick={handlerAdd}>
+              <span className="shadow"></span>
+              <span className="edge"></span>
+              <span className="front text"> +</span>
+            </button>
+            <button onClick={handlerRemove}>
+              <span className="shadow"></span>
+              <span className="edge"></span>
+              <span className="front text"> -</span>
+            </button>
+            <button onClick={() => onAdd(count)}>
+              <span className="shadow"></span>
+              <span className="edge"></span>
+              <span className="front text"> Agregar al carrito</span>
+            </button>
+            
+            
         </div>           
     )
 }
